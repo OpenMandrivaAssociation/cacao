@@ -1,65 +1,64 @@
-%define section		free
+%define section         free
 
-%define priority	1420
-%define javaver		1.4.2
-%define buildver	0
+%define priority        1500
+%define javaver         1.5.0
+%define buildver        0
 
 %define _libdir         %{_prefix}/%{_lib}/%{name}
 
-%define java_version	%{javaver}.%{buildver}
+%define java_version    %{javaver}.%{buildver}
 
-%define origin		cacao
-%define originver	0.97
+%define origin          cacao
+%define originver       0.98
 %define cname           java-%{javaver}-%{origin}
 
-%define	sdklnk		java-%{javaver}-%{origin}
-%define	jrelnk		jre-%{javaver}-%{origin}
-%define	sdkdir		%{cname}-%{java_version}
-%define	jredir		%{sdkdir}/jre
-%define sdkbindir	%{_jvmdir}/%{sdklnk}/bin
-%define jrebindir	%{_jvmdir}/%{jrelnk}/bin
+%define sdklnk          java-%{javaver}-%{origin}
+%define jrelnk          jre-%{javaver}-%{origin}
+%define sdkdir          %{cname}-%{java_version}
+%define jredir          %{sdkdir}/jre
+%define sdkbindir       %{_jvmdir}/%{sdklnk}/bin
+%define jrebindir       %{_jvmdir}/%{jrelnk}/bin
 %define jvmjardir       %{_jvmjardir}/%{cname}-%{java_version}
 
-Name:		cacao
-Version:	%{originver}
-Release:	%mkrel 2
-Epoch:		0
-Summary:	JIT compiler for Java
-
-Group:		Development/Java
-License:	GPL
-URL:		http://www.cacaojvm.org/
-Source0:	http://www.complang.tuwien.ac.at/cacaojvm/download/%{origin}-%{originver}/%{origin}-%{originver}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires:	automake1.8
-BuildRequires:	binutils-devel
-BuildRequires:	classpath-devel >= 0:0.90
-BuildRequires:	java-devel >= 0:1.4.2
-BuildRequires:	jpackage-utils >= 0:1.5, sed
-BuildRequires:	libltdl-devel
-BuildRequires:	tetex
-BuildRequires:	tetex-latex
-Requires:	gcj-tools
-Requires:	jce
-Requires:	java-sasl
+Name:           cacao
+Version:        %{originver}
+Release:        %mkrel 1
+Epoch:          0
+Summary:        JIT compiler for Java
+Group:          Development/Java
+License:        GPL
+URL:            http://www.cacaojvm.org/
+Source0:        http://www.complang.tuwien.ac.at/cacaojvm/download/cacao-%{originver}/cacao-%{originver}.tar.bz2
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires:  automake1.8
+BuildRequires:  binutils-devel
+BuildRequires:  classpath-devel >= 0:0.90
+BuildRequires:  java-devel >= 0:1.4.2
+BuildRequires:  jpackage-utils >= 0:1.5, sed
+BuildRequires:  libltdl-devel
+BuildRequires:  tetex
+BuildRequires:  tetex-latex
+Requires:       gcj-tools
+Requires:       jce
+Requires:       java-sasl
 Requires(post): classpath >= 0:0.90
 Requires(postun): classpath >= 0:0.90
 Requires(post): jpackage-utils >= 0:1.6.3
 Requires(postun): jpackage-utils >= 0:1.6.3
 Requires(post): gcj-tools
 Requires(postun): gcj-tools
-Provides:	jre-%{javaver}-%{origin} = %{epoch}:%{java_version}-%{release}
-Provides:	jre-%{origin} = %{epoch}:%{java_version}-%{release}
-Provides:	jre-%{javaver}, java-%{javaver}, jre = %{epoch}:%{javaver}
-Provides:	java-%{origin} = %{epoch}:%{java_version}-%{release}
-Provides:	java = %{epoch}:%{javaver}
-Provides:	jaxp_parser_impl
-Provides:	jndi, jndi-ldap, jdbc-stdext, jaas, jta
-Provides:	jsse
-Provides:	jaxp_transform_impl
-Obsoletes:	java-%{javaver}-%{origin}
-Provides:	java-%{javaver}-%{origin}
-#Provides:	%{origin} = %{epoch}:%{originver}
+Provides:       jre-%{javaver}-%{origin} = %{epoch}:%{java_version}-%{release}
+Provides:       jre-%{origin} = %{epoch}:%{java_version}-%{release}
+Provides:       jre-%{javaver}, java-%{javaver}, jre = %{epoch}:%{javaver}
+Provides:       java-%{origin} = %{epoch}:%{java_version}-%{release}
+Provides:       java = %{epoch}:%{javaver}
+Provides:       jaxp_parser_impl
+Provides:       jndi, jndi-ldap, jdbc-stdext, jaas, jta
+Provides:       jsse
+Provides:       jaxp_transform_impl
+Obsoletes:      java-%{javaver}-%{origin}
+Provides:       java-%{javaver}-%{origin}
+#Provides:      %{origin} = %{epoch}:%{originver}
 
 %description
 CACAO is a JIT compiler for Java. The CACAO project started as a 
@@ -71,23 +70,22 @@ release under the GPL.
 
 %prep
 %setup -q
-[ -x ./configure ] || ./autogen.sh
 
 %build
 export CLASSPATH=
 export JAVA=%{java}
 export JAVAC="%{_bindir}/ecj -bootclasspath %{_datadir}/classpath/glibj.zip -1.5"
 export JAR=%{jar}
-%configure2_5x \
+%{configure2_5x} \
   --disable-rpath \
   --with-classpath-prefix=%{_prefix} \
   --with-classpath-libdir=%{_prefix}/%{_lib}
-%make
+%{make}
 (cd doc/handbook && %{__make} handbook)
 
 %install
-rm -rf %{buildroot}
-%makeinstall
+%{__rm} -rf %{buildroot}
+%{makeinstall_std}
 %{__rm} -rf %{buildroot}%{_bindir}/{jarsigner,java,keytool,rmic,rmiregistry}
 
 %{__mkdir_p} $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/bin
@@ -214,5 +212,3 @@ fi
 %{_datadir}/%{origin}
 %{_mandir}/man1/%{origin}.1*
 %{_libdir}/libjvm*
-
-
