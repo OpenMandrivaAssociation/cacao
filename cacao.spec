@@ -22,7 +22,7 @@
 
 Name:           cacao
 Version:        %{originver}
-Release:        %mkrel 2
+Release:        %mkrel 3
 Epoch:          0
 Summary:        JIT compiler for Java
 Group:          Development/Java
@@ -192,7 +192,7 @@ update-alternatives --install %{_javadir}/jaxp_transform_impl.jar \
 
 %postun
 if [ $1 -eq 0 ] ; then
-   update-alternatives --remove java %{jrebindir}/java
+   update-alternatives --remove java %{_jvmdir}/%{jrelnk}/bin/java
    update-alternatives --remove jre_%{origin}  %{_jvmdir}/%{jrelnk}
    update-alternatives --remove jre_%{javaver} %{_jvmdir}/%{jrelnk}
    update-alternatives --remove jaxp_parser_impl \
