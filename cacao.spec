@@ -22,7 +22,7 @@
 
 Name:           cacao
 Version:        %{originver}
-Release:        %mkrel 1
+Release:        %mkrel 2
 Epoch:          0
 Summary:        JIT compiler for Java
 Group:          Development/Java
@@ -97,7 +97,7 @@ export JAR=%{jar}
 
 # create extensions symlinks
 # jessie
-ln -s %{_javadir}/jsse.jar $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/lib/jsse.jar
+ln -s %{_datadir}/classpath/glibj.zip $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/lib/jsse.jar
 
 # extensions handling
 install -dm 755 $RPM_BUILD_ROOT%{jvmjardir}
@@ -142,10 +142,10 @@ rm -rf %{buildroot}
 
 %post
 update-alternatives \
-  --install %{_bindir}/java java %{_jvmdir}/%{jredir}/bin/java %{priority} \
+  --install %{_bindir}/java java %{_jvmdir}/%{jrelnk}/bin/java %{priority} \
   --slave %{_jvmdir}/jre          jre          %{_jvmdir}/%{jrelnk} \
   --slave %{_jvmjardir}/jre       jre_exports  %{_jvmjardir}/%{jrelnk} \
-  --slave %{_bindir}/rmiregistry  rmiregistry  %{_jvmdir}/%{jredir}/bin/rmiregistry
+  --slave %{_bindir}/rmiregistry  rmiregistry  %{_jvmdir}/%{jrelnk}/bin/rmiregistry
 
 update-alternatives \
   --install %{_jvmdir}/jre-%{origin} \
