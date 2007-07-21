@@ -33,7 +33,8 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  automake1.8
 BuildRequires:  binutils-devel
 BuildRequires:  classpath-devel >= 0:0.90
-BuildRequires:  java-devel >= 0:1.4.2
+BuildRequires:  eclipse-ecj
+BuildRequires:  java-1.5.0-gcj-devel
 BuildRequires:  jpackage-utils >= 0:1.5, sed
 BuildRequires:  libltdl-devel
 BuildRequires:  tetex
@@ -138,7 +139,7 @@ find $RPM_BUILD_ROOT%{_jvmdir}/%{sdkdir}/bin -type f -o -type l \
 %{__rm} -rf %{buildroot}%{_includedir}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 update-alternatives \
