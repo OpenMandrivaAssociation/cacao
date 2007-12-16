@@ -22,7 +22,7 @@
 
 Name:           cacao
 Version:        %{originver}
-Release:        %mkrel 3
+Release:        %mkrel 4
 Epoch:          0
 Summary:        JIT compiler for Java
 Group:          Development/Java
@@ -35,7 +35,7 @@ BuildRequires:  binutils-devel
 BuildRequires:  classpath-devel >= 0:0.90
 BuildRequires:  eclipse-ecj
 BuildRequires:  java-1.5.0-gcj-devel
-BuildRequires:  jpackage-utils >= 0:1.5, sed
+BuildRequires:  java-rpmbuild >= 0:1.5, sed
 BuildRequires:  libltdl-devel
 BuildRequires:  tetex
 BuildRequires:  tetex-latex
