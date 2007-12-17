@@ -29,7 +29,6 @@ Group:          Development/Java
 License:        GPL
 URL:            http://www.cacaojvm.org/
 Source0:        http://www.complang.tuwien.ac.at/cacaojvm/download/cacao-%{originver}/cacao-%{originver}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  automake1.8
 BuildRequires:  binutils-devel
 BuildRequires:  classpath-devel >= 0:0.90
