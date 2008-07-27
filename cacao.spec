@@ -9,7 +9,7 @@
 %define java_version    %{javaver}.%{buildver}
 
 %define origin          cacao
-%define originver       0.98
+%define originver       0.99.2
 %define cname           java-%{javaver}-%{origin}
 
 %define sdklnk          java-%{javaver}-%{origin}
@@ -22,7 +22,7 @@
 
 Name:           cacao
 Version:        %{originver}
-Release:        %mkrel 6
+Release:        %mkrel 1
 Epoch:          0
 Summary:        JIT compiler for Java
 Group:          Development/Java
