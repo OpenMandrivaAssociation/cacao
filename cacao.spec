@@ -74,25 +74,21 @@ release under the GPL.
 
 %build
 export CLASSPATH=
-export JAVA=%{java}
-export JAVAC="%{_bindir}/ecj -bootclasspath %{_datadir}/classpath/glibj.zip -1.5"
-export JAR=%{jar}
 %{configure2_5x} \
   --disable-rpath \
-  --with-classpath-prefix=%{_prefix} \
-  --with-classpath-libdir=%{_prefix}/%{_lib}
+  --with-java-runtime-library=gnuclasspath \
+  --with-java-runtime-library-prefix=%{_prefix} \
+  --with-java-runtime-library-libdir=%{_libdir}
 %{make}
 (cd doc/handbook && %{__make} handbook)
 
 %install
 %{__rm} -rf %{buildroot}
 %{makeinstall_std}
-%{__rm} -rf %{buildroot}%{_bindir}/{jarsigner,java,keytool,rmic,rmiregistry}
+%{__rm} %{buildroot}%{_bindir}/java
 
 %{__mkdir_p} $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/bin
-(cd $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/bin \
-&& %{__ln_s} %{_bindir}/%{origin} java \
-&& %{__ln_s} %{_bindir}/grmiregistry rmiregistry)
+(cd $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/bin %{__ln_s} %{_bindir}/%{origin} java)
 
 %{__mkdir_p} $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/lib
 
