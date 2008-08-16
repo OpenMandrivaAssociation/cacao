@@ -9,7 +9,7 @@
 %define java_version    %{javaver}.%{buildver}
 
 %define origin          cacao
-%define originver       0.99.2
+%define originver       0.99.3
 %define cname           java-%{javaver}-%{origin}
 
 %define sdklnk          java-%{javaver}-%{origin}
