@@ -9,7 +9,7 @@
 %define java_version    %{javaver}.%{buildver}
 
 %define origin          cacao
-%define originver       0.99.3
+%define originver       0.99.4
 %define cname           java-%{javaver}-%{origin}
 
 %define sdklnk          java-%{javaver}-%{origin}
@@ -22,11 +22,11 @@
 
 Name:           cacao
 Version:        %{originver}
-Release:        %mkrel 2
+Release:        %mkrel 1
 Epoch:          0
 Summary:        JIT compiler for Java
 Group:          Development/Java
-License:        GPL
+License:        GPLv2
 URL:            http://www.cacaojvm.org/
 Source0:        http://www.complang.tuwien.ac.at/cacaojvm/download/cacao-%{originver}/cacao-%{originver}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
