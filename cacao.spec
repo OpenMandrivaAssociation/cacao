@@ -209,3 +209,133 @@ fi
 %{_datadir}/%{origin}
 %{_mandir}/man1/%{origin}.1*
 %{_libdir}/libjvm*
+
+
+%changelog
+* Sun Dec 05 2010 Oden Eriksson <oeriksson@mandriva.com> 0:0.99.4-2mdv2011.0
++ Revision: 610092
+- rebuild
+
+* Mon Feb 15 2010 Sandro Cazzaniga <kharec@mandriva.org> 0:0.99.4-1mdv2010.1
++ Revision: 506125
+- update to 0.99.4
+
+* Wed Sep 02 2009 Thierry Vignaud <tv@mandriva.org> 0:0.99.3-2mdv2010.0
++ Revision: 424721
+- rebuild
+
+* Sat Aug 16 2008 David Walluck <walluck@mandriva.org> 0:0.99.3-1mdv2009.0
++ Revision: 272770
+- 0.99.3
+
+* Sat Aug 09 2008 David Walluck <walluck@mandriva.org> 0:0.99.2-1mdv2009.0
++ Revision: 270072
+- fix build
+- 0.99.2
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+    - kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Anssi Hannula <anssi@mandriva.org>
+    - buildrequire java-rpmbuild, i.e. build with icedtea on x86(_64)
+
+* Sat Jul 21 2007 David Walluck <walluck@mandriva.org> 0:0.98-3mdv2008.0
++ Revision: 54248
+- more alternatives fixing
+
+* Sat Jul 21 2007 David Walluck <walluck@mandriva.org> 0:0.98-2mdv2008.0
++ Revision: 54183
+- fix build
+- fix jsse link
+- fix java link
+
+* Sun Jun 10 2007 David Walluck <walluck@mandriva.org> 0:0.98-1mdv2008.0
++ Revision: 37936
+- 0.98
+- supports java 1.5.0
+
+
+* Fri Nov 10 2006 David Walluck <walluck@mandriva.org> 0.97-2mdv2007.0
++ Revision: 80538
+- fix classpath-libdir
+
+* Thu Nov 09 2006 David Walluck <walluck@mandriva.org> 0:0.97-1mdv2007.1
++ Revision: 79926
+- fix libjvm location
+
+* Thu Nov 02 2006 David Walluck <walluck@mandriva.org> 0:0.97-0.5891.1mdv2007.1
++ Revision: 75108
+- 0.97 (SVN 5891)
+
+* Fri Oct 27 2006 David Walluck <walluck@mandriva.org> 0:0.97-0.5824.1mdv2007.1
++ Revision: 72965
+- SVN 5824
+
+* Mon Oct 23 2006 David Walluck <walluck@mandriva.org> 0:0.96-2mdv2007.1
++ Revision: 71668
+- Import cacao
+
+* Mon Aug 14 2006 Emmanuel Andry <eandry@mandriva.org> 0:0.96-2mdv2007.0
+- 0.96
+- rebuild to fix dependencies
+
+* Fri May 26 2006 David Walluck <walluck@mandriva.org> 0:0.96-1mdv2007.0mdk
+- 0.96
+- rebuild to fix dependencies
+
+* Sat May 13 2006 David Walluck <walluck@mandriva.org> 0:0.95-5mdk
+- SVN 4908
+- rebuild for new binutils
+
+* Tue Apr 25 2006 David Walluck <walluck@mandriva.org> 0:0.95-4mdk
+- SVN 4831
+
+* Wed Apr 12 2006 David Walluck <walluck@mandriva.org> 0:0.95-3mdk
+- update to SVN 20060411 for classpath 0.90 support
+- BuildRequires: classpath-devel not classpath
+
+* Wed Apr 12 2006 David Walluck <walluck@mandriva.org> 0:0.95-2mdk
+- rebuild to fix dependencies
+
+* Thu Feb 16 2006 David Walluck <walluck@mandriva.org> 0:0.95-1mdk
+- 0.95
+
+* Mon Feb 13 2006 David Walluck <walluck@mandriva.org> 0:0.94-3mdk
+- SVN 20060213
+- BuildRequires: java-devel
+- export JAR
+
+* Tue Jan 31 2006 David Walluck <walluck@mandriva.org> 0:0.94-2mdk
+- fix classpath libdir
+
+* Tue Jan 31 2006 David Walluck <walluck@mandriva.org> 0:0.94-1mdk
+- 0.94 (SVN 20060130)
+
+* Thu Jan 19 2006 David Walluck <walluck@mandriva.org> 0:0.93-7mdk
+- BuildRequires: libltdl-devel
+
+* Wed Jan 18 2006 David Walluck <walluck@mandriva.org> 0:0.93-6mdk
+- BuildRequires: automake1.8
+- BuildRequires (not Requires): binutils-devel
+- --disable-jvmti
+
+* Sun Jan 15 2006 David Walluck <walluck@mandriva.org> 0:0.93-5mdk
+- CVS (20050114)
+- BuildRequires: jikes
+
+* Sat Jan 14 2006 David Walluck <walluck@mandriva.org> 0:0.93-4mdk
+- really fix library path on x86_64
+
+* Sat Jan 14 2006 David Walluck <walluck@mandriva.org> 0:0.93-3mdk
+- fix library path on x86_64
+
+* Sat Jan 14 2006 David Walluck <walluck@mandriva.org> 0:0.93-2mdk
+- add java and rmiregistry symlinks
+
+* Fri Jan 13 2006 David Walluck <walluck@mandriva.org> 0:0.93-1mdk
+- release
+
