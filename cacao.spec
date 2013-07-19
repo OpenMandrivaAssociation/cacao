@@ -21,14 +21,14 @@
 %define jvmjardir       %{_jvmjardir}/%{cname}-%{java_version}
 
 Name:           cacao
-Version:        %{originver}
-Release:        %mkrel 2
+Version:        1.6.0
+Release:        1
 Epoch:          0
 Summary:        JIT compiler for Java
 Group:          Development/Java
 License:        GPLv2
 URL:            http://www.cacaojvm.org/
-Source0:        http://www.complang.tuwien.ac.at/cacaojvm/download/cacao-%{originver}/cacao-%{originver}.tar.bz2
+Source0:        http://www.complang.tuwien.ac.at/cacaojvm/download/cacao-1.6.0/%{name}-%{version}.tar.xz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  automake1.8
 BuildRequires:  binutils-devel
@@ -338,4 +338,5 @@ fi
 
 * Fri Jan 13 2006 David Walluck <walluck@mandriva.org> 0:0.93-1mdk
 - release
+
 
