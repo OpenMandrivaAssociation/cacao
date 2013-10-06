@@ -29,7 +29,6 @@ Group:          Development/Java
 License:        GPLv2
 URL:            http://www.cacaojvm.org/
 Source0:        http://www.complang.tuwien.ac.at/cacaojvm/download/cacao-1.6.1/%{name}-%{version}.tar.xz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  automake1.8
 BuildRequires:  binutils-devel
 BuildRequires:  classpath-devel >= 0:0.90
@@ -83,22 +82,21 @@ export CLASSPATH=
 (cd doc/handbook && %{__make} handbook)
 
 %install
-%{__rm} -rf %{buildroot}
 %{makeinstall_std}
 %{__rm} %{buildroot}%{_bindir}/java
 
-%{__mkdir_p} $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/bin
-(cd $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/bin %{__ln_s} %{_bindir}/%{origin} java)
+%{__mkdir_p} %{buildroot}%{_jvmdir}/%{jredir}/bin
+(cd %{buildroot}%{_jvmdir}/%{jredir}/bin %{__ln_s} %{_bindir}/%{origin} java)
 
-%{__mkdir_p} $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/lib
+%{__mkdir_p} %{buildroot}%{_jvmdir}/%{jredir}/lib
 
 # create extensions symlinks
 # jessie
-ln -s %{_datadir}/classpath/glibj.zip $RPM_BUILD_ROOT%{_jvmdir}/%{jredir}/lib/jsse.jar
+ln -s %{_datadir}/classpath/glibj.zip %{buildroot}%{_jvmdir}/%{jredir}/lib/jsse.jar
 
 # extensions handling
-install -dm 755 $RPM_BUILD_ROOT%{jvmjardir}
-pushd $RPM_BUILD_ROOT%{jvmjardir}
+install -dm 755 %{buildroot}%{jvmjardir}
+pushd %{buildroot}%{jvmjardir}
    ln -s %{_jvmdir}/%{jredir}/lib/jaas.jar jaas-%{java_version}.jar
    ln -s %{_jvmdir}/%{jredir}/lib/jdbc-stdext.jar jdbc-stdext-%{java_version}.jar
    ln -s %{_jvmdir}/%{jredir}/lib/jndi.jar jndi-%{java_version}.jar
@@ -110,32 +108,31 @@ pushd $RPM_BUILD_ROOT%{jvmjardir}
 popd
 
 # versionless symlinks
-pushd $RPM_BUILD_ROOT%{_jvmdir}
+pushd %{buildroot}%{_jvmdir}
    ln -s %{jredir} %{jrelnk}
 #   ln -s %{sdkdir} %{sdklnk}
 popd
 
-pushd $RPM_BUILD_ROOT%{_jvmjardir}
+pushd %{buildroot}%{_jvmjardir}
    ln -s %{sdkdir} %{jrelnk}
 #   ln -s %{sdkdir} %{sdklnk}
 popd
 
 # generate file lists
-find $RPM_BUILD_ROOT%{_jvmdir}/%{jredir} -type d \
-  | sed 's|'$RPM_BUILD_ROOT'|%dir |' >  %{name}-%{version}-all.files
-find $RPM_BUILD_ROOT%{_jvmdir}/%{jredir} -type f -o -type l \
-  | sed 's|'$RPM_BUILD_ROOT'||'      >> %{name}-%{version}-all.files
+find %{buildroot}%{_jvmdir}/%{jredir} -type d \
+  | sed 's|'%{buildroot}'|%dir |' >  %{name}-%{version}-all.files
+find %{buildroot}%{_jvmdir}/%{jredir} -type f -o -type l \
+  | sed 's|'%{buildroot}'||'      >> %{name}-%{version}-all.files
 
 cat %{name}-%{version}-all.files \
   > %{name}-%{version}.files
 
-find $RPM_BUILD_ROOT%{_jvmdir}/%{sdkdir}/bin -type f -o -type l \
-  | sed "s|^$RPM_BUILD_ROOT||"      > %{name}-%{version}-sdk-bin.files
+find %{buildroot}%{_jvmdir}/%{sdkdir}/bin -type f -o -type l \
+  | sed "s|^%{buildroot}||"      > %{name}-%{version}-sdk-bin.files
 
 %{__rm} -rf %{buildroot}%{_includedir}
 
 %clean
-%{__rm} -rf %{buildroot}
 
 %post
 update-alternatives \
