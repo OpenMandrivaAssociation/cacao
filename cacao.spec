@@ -22,7 +22,7 @@
 
 Name:           cacao
 Version:        %{originver}
-Release:        %mkrel 2
+Release:        3
 Epoch:          0
 Summary:        JIT compiler for Java
 Group:          Development/Java
